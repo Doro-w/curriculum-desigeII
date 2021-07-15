@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author xzc
  * @since 2021-07-14
  */
-@Service
+@Service("DicService")
 public class DicServiceImpl extends ServiceImpl<DicMapper, Dic> implements DicService {
 
 }

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author xzc
  * @since 2021-07-14
  */
-@Service
+@Service("WordService")
 public class WordServiceImpl extends ServiceImpl<WordMapper, Word> implements WordService {
 
 }
