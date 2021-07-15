@@ -19,34 +19,25 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+    @Autowired
+    private UserMapper userMapper;
+
     // 注册时
     @Override
-    public User addUser(User user){
+    public int addUser(User user){
         try{
-            return UserMapper.save(user);
+            return userMapper.insert(user);
         }catch (Exception e){
             e.printStackTrace();
-            return null;
+            return 0;
         }
     }
 
-    @Override
-    public boolean deleteUser(int id){
-        try {
-            UserMapper.deleteById(id);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
     // 登录时
-    @Autowired
-    List<User> userList;
     @Override
     public User getUserByNameAndPwd(String username, String password){
-        List<User> user=userList;
+        List<User> user=userMapper.getUserByNameAndPwd(username,password);
         if(user.size()>0){
             return user.get(0);
         }
@@ -56,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     // 根据用户名查找用户id
     @Override
     public User getUserId(String username){
-        List<User> user=UserMapper.getUserByName(username);
+        List<User> user=userMapper.getUserIdByName(username);
         if(user.size()>0){
             return user.get(0);
         }

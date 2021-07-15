@@ -21,7 +21,7 @@ import java.util.List;
  */
 @RestController
 
-@RequestMapping("//word")
+@RequestMapping("/word")
 public class WordController {
     @Autowired
     private WordService wordService;

@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-07-14
  */
 public interface UserService extends IService<User> {
-    User addUser(User user); // 注册时
+    int addUser(User user); // 注册时
     User getUserByNameAndPwd(String name, String password); // 登录时
     User getUserId(String name);    // 根据用户名查找用户id
 }

@@ -22,7 +22,7 @@ import java.util.*;
  */
 @RestController
 
-@RequestMapping("//dic")
+@RequestMapping("/dic")
 public class DicController {
 
     @Autowired

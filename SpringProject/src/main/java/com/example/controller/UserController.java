@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -27,84 +28,95 @@ import java.util.List;
  * @since 2021-07-14
  */
 @RestController
+<<<<<<< HEAD
 @MapperScan("com.example.mapper.UserMapper")
 @RequestMapping("//user")
+=======
+@RequestMapping("/user")
+>>>>>>> 828b63480cf68dbceba1728d9295d4ed2457e9f6
 public class UserController {
     @Autowired
     private UserService userService;
 
     //用户登录方法
+<<<<<<< HEAD
     @PostMapping("/login")
     @ResponseBody
 
     public HashMap<String,String> login(@RequestBody Account account) throws IOException {
         //注意这里新建一个Account，不能用User，因为和实际上数据库中的User完全不同
         User u=UserService.getUserByNameAndPwd(account.username,account.password); //获取用户表的用户名和密码
+=======
+    @GetMapping("/login")
+    public HashMap<String, String> login(@RequestParam(value = "name")String name,
+                                         @RequestParam(value = "password")String password){
+        User u = userService.getUserByNameAndPwd(name,password);
+>>>>>>> 828b63480cf68dbceba1728d9295d4ed2457e9f6
         if(u!=null){
             return new HashMap<String,String>(){{
                 put("msg","success!");
                 put("code","1");
+                put("result",u.toString());
             }};
         }
         else {
             return new HashMap<String,String>(){{
-                put("msg","error!");
+                put("msg","fail!");
                 put("code","0");
             }};
         }
     }
 
-    public static class Account{
-        public String username;
-        public String password;
-    }
-
     //用户注册
     @PostMapping("reg")
     @ResponseBody
-    public HashMap saveUser(@RequestBody User user) throws Exception{
-        HashMap m=new HashMap();
+    public HashMap<String,String> saveUser(@RequestBody User user) throws Exception{
+        HashMap<String,String> m=new HashMap<>();
         try {
-            user.setCreatTime();// new Date()为获取当前系统时间
-            UserService.addUser(user);
-            m.put("msg","success!");
-            m.put("code","1");
+            LocalDateTime time = LocalDateTime.now();
+            user.setCreateTime(time);// new Date()为获取当前系统时间
+            int i = userService.addUser(user);
+            if (i ==1){
+                m.put("msg","success!");
+                m.put("code","1");
+                m.put("result", user.toString());
+            }
+            else{
+                m.put("msg","fail!");
+                m.put("code","0");
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            m.put("msg","error!");
+            m.put("msg","fail!");
             m.put("code","0");
         }
         return m;
     }
 
-    @GetMapping("/list")
-    public List<User> list(){
-
-        return this.userService.list();
+    //根据用户名查找用户id
+    @GetMapping("/findUserId")
+    public HashMap<String, String> findUserId(@RequestParam(value = "name")String name){
+        User u = userService.getUserId(name);
+        int id = u.getId();
+        if(u!=null){
+            return new HashMap<String,String>(){{
+                put("msg","success!");
+                put("code","1");
+                put("result",Integer.toString(id));
+            }};
+        }
+        else {
+            return new HashMap<String,String>(){{
+                put("msg","fail!");
+                put("code","0");
+            }};
+        }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable("id") Integer id){
-
-        return this.userService.removeById(id);
-    }
-
-    @GetMapping("/find/{id}")
-    public User find(@PathVariable("id") Integer id){
-
-        return this.userService.getById(id);
-
-    }
     @PutMapping("/update")
     public boolean edit(@RequestBody User user){
 
         return  this.userService.updateById((user));
-    }
-
-    @PostMapping("/add")
-    public boolean add(@RequestBody User user){
-
-        return this.userService.save(user);
     }
 
 }
