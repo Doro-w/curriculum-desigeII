@@ -3,6 +3,8 @@ package com.example.service;
 import com.example.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -14,5 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface UserService extends IService<User> {
     int addUser(User user); // 注册时
     User getUserByNameAndPwd(String name, String password); // 登录时
-    User getUserId(String name);    // 根据用户名查找用户id
+    List<User> getUserId(String name);    // 根据用户名查找用户id
 }

@@ -6,9 +6,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
+  mapper-locations: classpath:com/example/mapper/xml/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  mapper-locations: classpath:com/example/mapper/xml/*.xml
+    map-underscore-to-camel-case: true
 
 server:
   port: 8180

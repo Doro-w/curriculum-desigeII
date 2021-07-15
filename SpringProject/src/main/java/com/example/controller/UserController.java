@@ -1,6 +1,9 @@
 package com.example.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.entity.Dic;
 import com.example.entity.User;
 import com.example.entity.Word;
@@ -12,10 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 /**
@@ -34,18 +36,20 @@ public class UserController {
 
     //用户登录方法
     @GetMapping("/login")
-    public HashMap<String, String> login(@RequestParam(value = "name")String name,
+    public HashMap<String, Object> login(@RequestParam(value = "name")String name,
                                          @RequestParam(value = "password")String password){
         User u = userService.getUserByNameAndPwd(name,password);
+        String jsonStr = JSON.toJSONString(u);//将java对象转换为json字符串
+        JSONObject map = JSON.parseObject(jsonStr);//将json字符串转换为json对象
         if(u!=null){
-            return new HashMap<String,String>(){{
+            return new HashMap<String, Object>(){{
                 put("msg","success!");
                 put("code","1");
-                put("result",u.toString());
+                put("result",map);  //嵌套json
             }};
         }
         else {
-            return new HashMap<String,String>(){{
+            return new HashMap<String, Object>(){{
                 put("msg","fail!");
                 put("code","0");
             }};
@@ -80,18 +84,20 @@ public class UserController {
 
     //根据用户名查找用户id
     @GetMapping("/findUserId")
-    public HashMap<String, String> findUserId(@RequestParam(value = "name")String name){
-        User u = userService.getUserId(name);
-        int id = u.getId();
+    public HashMap<String, Object> findUserId(@RequestParam(value = "name")String name){
+        List<User> u = userService.getUserId(name);
+        Integer id = u.get(0).getId();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("id",id.toString());
         if(u!=null){
-            return new HashMap<String,String>(){{
+            return new HashMap<String, Object>(){{
                 put("msg","success!");
                 put("code","1");
-                put("result",Integer.toString(id));
+                put("result", map);
             }};
         }
         else {
-            return new HashMap<String,String>(){{
+            return new HashMap<String, Object>(){{
                 put("msg","fail!");
                 put("code","0");
             }};

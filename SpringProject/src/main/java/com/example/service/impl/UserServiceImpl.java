@@ -39,6 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User getUserByNameAndPwd(String username, String password){
         List<User> user=userMapper.getUserByNameAndPwd(username,password);
         if(user.size()>0){
+            System.out.println(user.get(0));
             return user.get(0);
         }
         return null;
@@ -46,10 +47,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     // 根据用户名查找用户id
     @Override
-    public User getUserId(String username){
-        List<User> user=userMapper.getUserIdByName(username);
+    public List<User> getUserId(String username){
+        List<User> user = userMapper.getUserIdByName(username);
         if(user.size()>0){
-            return user.get(0);
+            return user;
         }
         return null;
     }

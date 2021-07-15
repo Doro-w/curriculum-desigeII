@@ -21,9 +21,7 @@ import java.util.List;
 @Repository
 public interface UserMapper extends BaseMapper<User> {
 
-//    @Query("select user from User user where user.name=:username and user.password=:password")
     List<User> getUserByNameAndPwd(String username, String password);
 
-//    @Query("select user from User user where user.name=:username")
     List<User> getUserIdByName(String username);
 }
