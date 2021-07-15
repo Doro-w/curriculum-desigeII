@@ -6,6 +6,7 @@ import com.example.entity.User;
 import com.example.entity.Word;
 import com.example.service.DicService;
 import com.example.service.UserService;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ import java.util.List;
  * @since 2021-07-14
  */
 @RestController
-
+@MapperScan("com.example.mapper.UserMapper")
 @RequestMapping("//user")
 public class UserController {
     @Autowired
@@ -35,6 +36,7 @@ public class UserController {
     //用户登录方法
     @PostMapping("/login")
     @ResponseBody
+
     public HashMap<String,String> login(@RequestBody Account account) throws IOException {
         //注意这里新建一个Account，不能用User，因为和实际上数据库中的User完全不同
         User u=UserService.getUserByNameAndPwd(account.username,account.password); //获取用户表的用户名和密码
