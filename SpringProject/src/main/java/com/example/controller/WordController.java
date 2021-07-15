@@ -20,7 +20,6 @@ import java.util.List;
  * @since 2021-07-14
  */
 @RestController
-
 @RequestMapping("/word")
 public class WordController {
     @Autowired

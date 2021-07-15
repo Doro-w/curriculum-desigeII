@@ -21,7 +21,6 @@ import java.util.List;
  * @since 2021-07-14
  */
 @RestController
-
 @RequestMapping("/dic")
 public class DicController {
 
@@ -52,6 +51,7 @@ public class DicController {
     public boolean add(@RequestBody Dic dic){
         return this.dicService.save(dic);
     }
+
 }
 
 

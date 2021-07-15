@@ -2,8 +2,10 @@ package com.example.service.impl;
 
 import com.example.entity.Dic;
 import com.example.mapper.DicMapper;
+import com.example.mapper.UserMapper;
 import com.example.service.DicService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +18,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DicServiceImpl extends ServiceImpl<DicMapper, Dic> implements DicService {
-
+    @Autowired
+    private DicMapper DicMapper;
 }
