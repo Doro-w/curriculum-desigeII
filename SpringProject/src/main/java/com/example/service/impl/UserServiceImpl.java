@@ -54,4 +54,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         return null;
     }
+
+    @Override
+    public int updateUser(int id, String name, String password){
+        return userMapper.updateUserById(id, name, password);
+    }
 }

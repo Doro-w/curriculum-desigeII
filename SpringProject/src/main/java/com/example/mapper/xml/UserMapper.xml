@@ -16,4 +16,8 @@
     <select id="getUserIdByName" resultMap="userMap">
         select * from user where name = #{name}
     </select>
+
+    <update id="updateUserById">
+        update user set name = #{name}, password = #{password} where id = #{id}
+    </update>
 </mapper>

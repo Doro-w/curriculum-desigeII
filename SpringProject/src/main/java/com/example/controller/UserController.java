@@ -104,11 +104,23 @@ public class UserController {
         }
     }
 
+
     @PutMapping("/update")
-    public boolean edit(@RequestBody User user){
-
-        return  this.userService.updateById((user));
+    public HashMap<String, Object> edit(@RequestParam(value = "id") int id, @RequestParam(value = "name") String name,
+                                        @RequestParam(value = "password") String password){
+        int result = userService.updateUser(id, name, password);
+        if(result > 0){
+            return new HashMap<String, Object>(){{
+                put("msg","success!");
+                put("code","1");
+            }};
+        }
+        else {
+            return new HashMap<String, Object>(){{
+                put("msg","fail!");
+                put("code","0");
+            }};
+        }
     }
-
 }
 
