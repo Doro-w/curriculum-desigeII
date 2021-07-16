@@ -1,13 +1,10 @@
 package com.example.controller;
 
 
-import com.example.entity.Dic;
 import com.example.entity.Word;
 import com.example.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
