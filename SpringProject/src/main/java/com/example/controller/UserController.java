@@ -50,7 +50,6 @@ public class UserController {
 
     //用户注册
     @PostMapping("reg")
-    @ResponseBody
     public HashMap<String,String> saveUser(@RequestBody User user) throws Exception{
         HashMap<String,String> m=new HashMap<>();
         try {
@@ -60,7 +59,6 @@ public class UserController {
             if (i ==1){
                 m.put("msg","success!");
                 m.put("code","1");
-                m.put("result", user.toString());
             }
             else{
                 m.put("msg","fail!");
