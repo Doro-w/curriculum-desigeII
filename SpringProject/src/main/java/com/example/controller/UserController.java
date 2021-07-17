@@ -22,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
@@ -75,23 +76,23 @@ public class UserController {
     //根据用户名查找用户id
     @GetMapping("/findUserId")
     public HashMap<String, Object> findUserId(@RequestParam(value = "name")String name){
-        List<User> u = userService.getUserId(name);
-        Integer id = u.get(0).getId();
-        HashMap<String, String> map = new HashMap<>();
-        map.put("id",id.toString());
-        if(u!=null){
-            return new HashMap<String, Object>(){{
-                put("msg","success!");
-                put("code","1");
-                put("result", map);
-            }};
+        HashMap<String, Object> m = new HashMap<>();
+        try{
+            List<User> u = userService.getUserId(name);
+            Integer id = u.get(0).getId();
+            HashMap<String, String> map = new HashMap<>();
+            map.put("id",id.toString());
+            if(u!=null){
+                m.put("msg","success!");
+                m.put("code","1");
+                m.put("result", map);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            m.put("msg","fail!");
+            m.put("code","0");
         }
-        else {
-            return new HashMap<String, Object>(){{
-                put("msg","fail!");
-                put("code","0");
-            }};
-        }
+        return m;
     }
 
 
