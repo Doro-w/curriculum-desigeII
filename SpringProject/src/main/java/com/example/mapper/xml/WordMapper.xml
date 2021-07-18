@@ -27,4 +27,12 @@
     <delete id="deleteWord">
         delete from word where name = #{name} and dic_id  = #{dicId}
     </delete>
+
+    <select id="getCountRecvWord" resultType="java.lang.Integer">
+        select count(1) from word where status = ${1} and dic_id  = #{dicId}
+    </select>
+
+    <select id="getCountUnRecvWord" resultType="java.lang.Integer">
+        select count(1) from word where status = ${0} and dic_id  = #{dicId}
+    </select>
 </mapper>

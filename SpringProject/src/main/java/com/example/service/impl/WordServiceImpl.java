@@ -51,4 +51,31 @@ public class WordServiceImpl extends ServiceImpl<WordMapper, Word> implements Wo
     public int deleteWord(String name, int dicId){
         return wordMapper.deleteWord(name, dicId);
     }
+
+    // 获取已经复习的单词的数目
+    @Override
+    public Integer getCountRecvWord(int dicId){
+        try {
+            Integer count = wordMapper.getCountRecvWord(dicId);
+            return count;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
+
+    // 获取还没复习的单词的数目
+    @Override
+    public Integer getCountUnRecvWord(int dicId){
+        try{
+            Integer count = wordMapper.getCountUnRecvWord(dicId);
+            return count;
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
+
 }

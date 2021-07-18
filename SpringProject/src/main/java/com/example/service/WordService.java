@@ -20,4 +20,8 @@ public interface WordService extends IService<Word> {
     List<Word> getUnRevdWord(int dicId);
     List<Word> getWord(String name, int dicId);
     int deleteWord(String name, int dicId);
+    // 获取已经复习的单词的数目
+    Integer getCountRecvWord(int dicId);
+    // 获取已经复习的单词的数目
+    Integer getCountUnRecvWord(int dicId);
 }

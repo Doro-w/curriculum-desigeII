@@ -26,4 +26,8 @@ public interface WordMapper extends BaseMapper<Word> {
     List<Word> getWord(String name, int dicId);
     // 删除单词
     int deleteWord(String name, int dicId);
+    // 获取已经复习的单词的数目
+    Integer getCountRecvWord(int dicId);
+    // 获取已经复习的单词的数目
+    Integer getCountUnRecvWord(int dicId);
 }

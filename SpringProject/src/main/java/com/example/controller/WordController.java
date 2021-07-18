@@ -133,5 +133,40 @@ public class WordController {
         }
     }
 
+    // 获取已经复习的单词的数目
+    @GetMapping("/getCountRecvWord")
+    public HashMap<String, Object> getCountRevdWord(@RequestParam(value = "dicId") int dicId){
+        HashMap<String, Object> m = new HashMap<>();
+        Integer count = wordService.getCountRecvWord(dicId);
+        if(count != -1){
+            HashMap<String, String> map = new HashMap<>();
+            map.put("count", count.toString());
+            m.put("msg","success!");
+            m.put("code","1");
+            m.put("result",map);
+        }else{
+            m.put("msg","fail!");
+            m.put("code","0");
+        }
+        return m;
+    }
+
+    // 获取还未复习的单词的数目
+    @GetMapping("getCountUnRecvWord")
+    public HashMap<String, Object> getCountUnRevdWord(@RequestParam(value = "dicId") int dicId){
+        HashMap<String, Object> m = new HashMap<>();
+        Integer count = wordService.getCountUnRecvWord(dicId);
+        if(count != -1){
+            HashMap<String, String> map = new HashMap<>();
+            map.put("count", count.toString());
+            m.put("msg","success!");
+            m.put("code","1");
+            m.put("result",map);
+        }else{
+            m.put("msg","fail!");
+            m.put("code","0");
+        }
+        return m;
+    }
 }
 
