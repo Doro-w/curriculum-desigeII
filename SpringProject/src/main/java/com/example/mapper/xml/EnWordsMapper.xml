@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.EnWordsMapper">
+
+    <resultMap id="EnWordMap" type="com.example.entity.EnWords">
+        <result property="word" column="word"/>
+        <result property="translation" column="degree"/>
+    </resultMap>
+
+    <select id="getWordTranslation" resultType="java.lang.String">
+        select translation from EnWords where word = #{_word}
+    </select>
+
+</mapper>
