@@ -18,8 +18,12 @@ import java.util.List;
 public interface WordMapper extends BaseMapper<Word> {
     // 获取某本词书里的全部单词
     List<Word> getWordAll(int dicId);
+    // 获取已经复习了的单词
     List<Word> getRevdWord(int dicId);
+    // 获取还没复习了的单词
     List<Word> getUnRevdWord(int dicId);
+    // 查询单词（模糊查询）
     List<Word> getWord(String name, int dicId);
+    // 删除单词
     int deleteWord(String name, int dicId);
 }

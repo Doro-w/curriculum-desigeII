@@ -4,7 +4,11 @@ import com.example.entity.Img;
 import com.example.mapper.ImgMapper;
 import com.example.service.ImgService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.AccessType;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +20,12 @@ import org.springframework.stereotype.Service;
  */
 @Service("ImgService")
 public class ImgServiceImpl extends ServiceImpl<ImgMapper, Img> implements ImgService {
+    @Autowired
+    private ImgMapper imgMapper;
 
+    //获取词书封面
+    @Override
+    public List<Img> getImg(int id){
+        return imgMapper.getImg(id);
+    }
 }

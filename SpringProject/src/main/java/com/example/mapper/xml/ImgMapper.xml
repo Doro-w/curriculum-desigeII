@@ -2,4 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.ImgMapper">
 
+    <resultMap id="imgMap" type="com.example.entity.Img">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="url" column="url"/>
+    </resultMap>
+
+    <select id="getImg" resultMap="imgMap">
+        select name, url from img where id = #{id}
+    </select>
+
 </mapper>
