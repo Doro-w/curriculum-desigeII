@@ -32,13 +32,30 @@ public class ImgController {
     public HashMap<String, Object> getImg(@RequestParam(value = "id") int id){
         HashMap<String, Object> m = new HashMap<>();
         List<Img> imgList = imgService.getImg(id);
-        String jsonStr = JSON.toJSONString(imgList.get(0));//将java对象转换为json字符串
-        JSONObject map = JSON.parseObject(jsonStr);//将json字符串转换为json对象
         if(imgList.size()>0){
+            String jsonStr = JSON.toJSONString(imgList.get(0));//将java对象转换为json字符串
+            JSONObject map = JSON.parseObject(jsonStr);//将json字符串转换为json对象
             m.put("msg","success!");
             m.put("code","1");
             m.put("result",map);
         }else {
+            m.put("msg", "fail!");
+            m.put("code", "0");
+        }
+        return m;
+    }
+
+    @PostMapping("/addImg")
+    public HashMap<String, Object> addImg(@RequestBody Img img){
+        HashMap<String, Object> m = new HashMap<>();
+        Integer id = imgService.insertImgAndGetId(img);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("id",id.toString());
+        if(id != -1 ){
+            m.put("msg","success!");
+            m.put("code","1");
+            m.put("result",map);
+        }else{
             m.put("msg", "fail!");
             m.put("code", "0");
         }

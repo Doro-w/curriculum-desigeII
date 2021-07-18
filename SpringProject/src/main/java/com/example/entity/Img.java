@@ -1,6 +1,9 @@
 package com.example.entity;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,9 +21,8 @@ import lombok.EqualsAndHashCode;
 
     private static final long serialVersionUID=1L;
 
+      @TableId(value = "id", type = IdType.AUTO)
       private Integer id;
-
-    private String name;
 
     private String url;
 
@@ -30,14 +32,6 @@ import lombok.EqualsAndHashCode;
 
   public void setId(Integer id) {
     this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public String getUrl() {

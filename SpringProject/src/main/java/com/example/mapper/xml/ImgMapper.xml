@@ -9,7 +9,15 @@
     </resultMap>
 
     <select id="getImg" resultMap="imgMap">
-        select name, url from img where id = #{id}
+        select url from img where id = #{id}
     </select>
+
+    <insert id="insertImgAndGetId" parameterType="com.example.entity.Img" useGeneratedKeys="true" keyProperty="img.id">
+        insert into img (url) values(#{img.url})
+        <selectKey keyProperty="img.id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
 
 </mapper>

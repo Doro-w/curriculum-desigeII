@@ -28,4 +28,17 @@ public class ImgServiceImpl extends ServiceImpl<ImgMapper, Img> implements ImgSe
     public List<Img> getImg(int id){
         return imgMapper.getImg(id);
     }
+
+    // 添加词书封面并返回id
+    @Override
+    public Integer insertImgAndGetId(Img img) {
+        try {
+            imgMapper.insertImgAndGetId(img);
+            return img.getId();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }

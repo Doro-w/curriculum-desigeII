@@ -2,6 +2,7 @@ package com.example.mapper;
 
 import com.example.entity.Img;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,7 +17,9 @@ import java.util.List;
  */
 @Repository
 public interface ImgMapper extends BaseMapper<Img> {
-    //获取词书封面
+    // 获取词书封面
     List<Img> getImg(int id);
+    // 添加词书封面并返回id
+    Integer insertImgAndGetId(@Param(value = "img")Img img);
 
 }
