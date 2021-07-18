@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author xzc
  * @since 2021-07-16
  */
-@Service
+@Service("ImgService")
 public class ImgServiceImpl extends ServiceImpl<ImgMapper, Img> implements ImgService {
 
 }
