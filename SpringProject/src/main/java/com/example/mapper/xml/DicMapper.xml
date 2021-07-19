@@ -11,7 +11,7 @@
 
 
     <select id="getDicAll" resultMap="dicMap">
-        select dic.name, degree, img_id as imgId from dic where user_id = #{userId}
+        select id, dic.name, degree, img_id as imgId from dic where user_id = #{userId}
     </select>
 
 
