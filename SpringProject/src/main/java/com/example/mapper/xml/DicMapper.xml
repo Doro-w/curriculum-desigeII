@@ -11,12 +11,12 @@
 
 
     <select id="getDicAll" resultMap="dicMap">
-        select id, dic.name, degree, img_id as imgId from dic where user_id = #{userId}
+        select dic.id, dic.name, degree, img.url as imgUrl from dic join img on dic.img_id = img.id where user_id = #{userId}
     </select>
 
 
     <select id="getDicByName" resultMap="dicMap">
-        select dic.name, degree, img_id as imgId from dic where name LIKE '%${name}%' and user_id = #{userId}
+        select dic.name, degree, img.url as imgUrl from dic join img on dic.img_id = img.id where name LIKE '%${name}%' and user_id = #{userId}
     </select>
 
     <select id="getDicId" resultMap="dicMap">

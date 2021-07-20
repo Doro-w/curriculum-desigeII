@@ -32,6 +32,8 @@ import lombok.EqualsAndHashCode;
 
     private Integer imgId;
 
+    private String imgUrl;
+
   public Integer getId() {
     return id;
   }
@@ -70,5 +72,13 @@ import lombok.EqualsAndHashCode;
 
   public void setImgId(Integer imgId) {
     this.imgId = imgId;
+  }
+
+  public String getImgUrl() {
+    return imgUrl;
+  }
+
+  public void setImgUrl(String imgUrl) {
+    this.imgUrl = imgUrl;
   }
 }
