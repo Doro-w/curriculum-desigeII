@@ -19,5 +19,9 @@
         </selectKey>
     </insert>
 
+    <select id="getImgList" resultMap="imgMap">
+        select * from img
+    </select>
+
 
 </mapper>

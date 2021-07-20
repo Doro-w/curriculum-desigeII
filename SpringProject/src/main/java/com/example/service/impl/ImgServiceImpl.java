@@ -41,4 +41,11 @@ public class ImgServiceImpl extends ServiceImpl<ImgMapper, Img> implements ImgSe
         }
     }
 
+    // 获取全部词书封面
+    @Override
+    public List<Img> getImgList(){
+        return imgMapper.getImgList();
+    }
+
+
 }
