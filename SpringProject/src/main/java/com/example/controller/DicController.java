@@ -38,6 +38,8 @@ public class DicController {
             for(Dic i :diclist){
                 String jsonStr = JSON.toJSONString(i);//将每一个dic转换为json字符串
                 JSONObject jsonObject = JSON.parseObject(jsonStr);//将json字符串转换为json对象
+                jsonObject.put("dicId", jsonObject.getString("id"));
+                jsonObject.remove("id");
                 jsonArray.add(jsonObject);//将JSONObject对象添加到Json数组中
             }
             return new HashMap<String, Object>(){{
