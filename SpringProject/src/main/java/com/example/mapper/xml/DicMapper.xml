@@ -22,4 +22,5 @@
     <select id="getDicId" resultMap="dicMap">
         select id from dic where user_id = #{userId} and name = #{name}
     </select>
+
 </mapper>

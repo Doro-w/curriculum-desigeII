@@ -35,4 +35,8 @@
     <select id="getCountUnRecvWord" resultType="java.lang.Integer">
         select count(1) from word where status = ${0} and dic_id  = #{dicId}
     </select>
+
+    <update id="changeStatus">
+        update word set status = ${1} where id = #{id}
+    </update>
 </mapper>

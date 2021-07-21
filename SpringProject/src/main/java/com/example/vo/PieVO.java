@@ -7,7 +7,7 @@ import java.util.List;
 @Data
 public class PieVO {
     private List<String> pieName;
-    private List<PieDataVO> DataList;
+    private List<Object> DataList;
 
     public List<String> getPieName() {
         return pieName;
@@ -17,11 +17,12 @@ public class PieVO {
         this.pieName = pieName;
     }
 
-    public List<PieDataVO> getDataList() {
+
+    public List<Object> getDataList() {
         return DataList;
     }
 
-    public void setDataList(List<PieDataVO> dataList) {
-        this.DataList = dataList;
+    public void setDataList(List<Object> dataList) {
+        DataList = dataList;
     }
 }

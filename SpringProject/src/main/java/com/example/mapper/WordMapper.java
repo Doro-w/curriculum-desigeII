@@ -30,4 +30,6 @@ public interface WordMapper extends BaseMapper<Word> {
     Integer getCountRecvWord(int dicId);
     // 获取已经复习的单词的数目
     Integer getCountUnRecvWord(int dicId);
+    //修改单词学习状态
+    Integer changeStatus(int wordId);
 }

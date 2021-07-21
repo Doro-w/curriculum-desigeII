@@ -75,7 +75,17 @@ public class WordServiceImpl extends ServiceImpl<WordMapper, Word> implements Wo
             e.printStackTrace();
             return -1;
         }
+    }
 
+    //修改单词学习状态
+    @Override
+    public Integer changeStatus(int wordId){
+        try{
+            return wordMapper.changeStatus(wordId);
+        }catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
     }
 
 }

@@ -168,5 +168,19 @@ public class WordController {
         }
         return m;
     }
+
+    @PutMapping("changeStatus")
+    public HashMap<String, String> changeStatus(@RequestParam(value = "wordId") int wordId){
+        HashMap<String, String> m = new HashMap<>();
+        Integer flag = wordService.changeStatus(wordId);
+        if(flag != -1){
+            m.put("msg","success!");
+            m.put("code","1");
+        }else {
+            m.put("msg","fail!");
+            m.put("code","0");
+        }
+        return m;
+    }
 }
 
