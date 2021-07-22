@@ -13,11 +13,11 @@
     </select>
 
     <select id="getRevdWord" resultMap="wordMap">
-        select name, translation from word where status = ${1} and dic_id  = #{dicId}
+        select id, name, translation from word where status = ${1} and dic_id  = #{dicId}
     </select>
 
     <select id="getUnRevdWord" resultMap="wordMap">
-        select name, translation from word where status = ${0} and dic_id  = #{dicId}
+        select id, name, translation from word where status = ${0} and dic_id  = #{dicId}
     </select>
 
     <select id="getWord" resultMap="wordMap">
